@@ -6,6 +6,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None  
+
     def insert_end(self, new_data):
         new_node = Node(new_data)
         if self.head is None:
@@ -15,7 +16,6 @@ class LinkedList:
         while last.next:
             last = last.next
         last.next = new_node
-        print(f"Inserted {new_data}")
     def display_list(self):
         current = self.head
         if current is None:
@@ -26,9 +26,36 @@ class LinkedList:
             print(current.data, end=" ")
             current = current.next
         print() 
+    def mid_element(self):
+        if self.head is None:
+            print("Cannot find middle element: List is empty.")
+            return None
+
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        print(slow.data)
+        return slow.data
+        
+    def rev_linkedlist(self):
+        current = self.head
+        prev = None
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+            self.head = prev
+
 if __name__ == "__main__":
     my_list = LinkedList()
     for i in range(5):
         data_value = (i + 1) * 10
         my_list.insert_end(data_value)
     my_list.display_list()
+    my_list.mid_element()
+    my_list.rev_linkedlist()
+    my_list.display_list()
+
