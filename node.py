@@ -9,7 +9,7 @@ def preorder(root):
         preorder(root.left)
         print(root.data)
         preorder(root.right)
-
+        
 root = node('a')
 root.left = node('b')
 root.right = node('c')
